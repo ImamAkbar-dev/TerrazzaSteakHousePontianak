@@ -366,7 +366,7 @@ footer { background: #050505; padding: 80px 5% 40px; border-top: 1px solid #1a1a
 .text-center { text-align: center; }
 
 
-.pulse h2 { animation: pulseGold 2s infinite; color: var(--accent); font-size: 2rem; }
+.pulse h2 { animation: pulseGold 2s infinite; font-size: 2rem; }
 @keyframes pulseGold {
     0% { transform: scale(1); text-shadow: 0 0 0 rgba(197, 160, 89, 0.2); }
     50% { transform: scale(1.05); text-shadow: 0 0 20px rgba(197, 160, 89, 0.8); }
