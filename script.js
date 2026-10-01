@@ -508,9 +508,9 @@ function processPayment(event) {
         } else {
             const queueNo = Math.floor(Math.random() * 50) + 1; 
             localStorage.setItem('terrazza_queue_user', queueNo);
-            if(!localStorage.getItem('terrazza_queue_current')) {
-                localStorage.setItem('terrazza_queue_current', Math.max(1, queueNo - 3)); 
-            }
+            
+            localStorage.setItem('terrazza_queue_current', Math.max(1, queueNo - 3)); 
+            
             saveCart([]); 
             
             showToast('Pembayaran Pesanan Berhasil!', 'success');
