@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu - Terrazza Steak House</title>
+    <link rel="icon" type="image/" href="image/Title.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo"><img src="image/Logo.png" alt="Logo"></a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="menu.html" class="active">Menu</a>
+            <a href="reservasi.html">Reservasi</a>
+            <a href="antrian.html">Antrian</a>
+        </div>
+        <div class="nav-actions">
+            <div class="cart-icon" onclick="window.location.href='order.html'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M4 3v3a2 2 0 0 0 4 0V3"></path>
+                    <path d="M6 6v14"></path>
+                    <ellipse cx="18" cy="5.5" rx="2" ry="2.5"></ellipse>
+                    <path d="M18 8v12"></path>
+                </svg>
+                <span class="cart-badge">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="menu-page-section">
+        <h1 class="section-title">The Masterpiece</h1>
+        <p class="section-subtitle">Koleksi Kuliner Kami</p>
+        
+        <div class="category-filters" id="categoryFilters">
+            <button class="cat-btn active" data-category="All">All</button>
+            <button class="cat-btn" data-category="Appetizer / Snacks">Appetizer / Snacks</button>
+            <button class="cat-btn" data-category="Salad & Soup">Salad & Soup</button>
+            <button class="cat-btn" data-category="Chicken">Chicken</button>
+            <button class="cat-btn" data-category="Australian Prime Beef">Australian Prime Beef</button>
+            <button class="cat-btn" data-category="Australian Wagyu Beef MB4+">Wagyu Beef MB4+</button>
+            <button class="cat-btn" data-category="Australian Grain Fed Premium Beef">Grain Fed Premium</button>
+            <button class="cat-btn" data-category="Premium Wagyu Tajima MB9+">Wagyu Tajima MB9+</button>
+            <button class="cat-btn" data-category="Australian Lamb">Australian Lamb</button>
+            <button class="cat-btn" data-category="Fish">Fish</button>
+            <button class="cat-btn" data-category="Burgers">Burgers</button>
+            <button class="cat-btn" data-category="Kebab">Kebab</button>
+            <button class="cat-btn" data-category="Pasta">Pasta</button>
+            <button class="cat-btn" data-category="Shabu-shabu">Shabu-shabu</button>
+            <button class="cat-btn" data-category="Local Dishes">Local Dishes</button>
+            <button class="cat-btn" data-category="Grill">Grill</button>
+            <button class="cat-btn" data-category="Dessert">Dessert</button>
+            <button class="cat-btn" data-category="Drinks">Drinks</button>
+        </div>
+
+        <div id="menu-container" class="menu-grid"></div>
+    </section>
+
+    <div class="modal-overlay" id="modal-variant">
+        <div class="modal-content">
+            <span class="close-modal" onclick="toggleModal('modal-variant', false)">&times;</span>
+            <h2 id="var-menu-name" class="modal-menu-name">Menu</h2>
+            <p id="var-menu-price" class="modal-menu-price"></p>
+            
+            <form id="form-variant">
+                <div class="form-group">
+                    <label>Side Dish</label>
+                    <div class="radio-group">
+                        <input type="radio" id="sd1" name="sidedish" value="French Fries"><label for="sd1">French Fries</label>
+                        <input type="radio" id="sd2" name="sidedish" value="Mashed Potato"><label for="sd2">Mashed Potato</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Steak Doneness</label>
+                    <div class="radio-group">
+                        <input type="radio" id="dn1" name="doneness" value="Rare"><label for="dn1">Rare</label>
+                        <input type="radio" id="dn2" name="doneness" value="Medium Rare"><label for="dn2">Medium Rare</label>
+                        <input type="radio" id="dn3" name="doneness" value="Medium"><label for="dn3">Medium</label>
+                        <input type="radio" id="dn4" name="doneness" value="Medium Well"><label for="dn4">Medium Well</label>
+                        <input type="radio" id="dn5" name="doneness" value="Well Done"><label for="dn5">Well Done</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Signature Sauce</label>
+                    <div class="radio-group">
+                        <input type="radio" id="sc1" name="sauce" value="Honey Mustard BBQ"><label for="sc1">Honey Mustard BBQ</label>
+                        <input type="radio" id="sc2" name="sauce" value="Italian Herbs"><label for="sc2">Italian Herbs</label>
+                        <input type="radio" id="sc3" name="sauce" value="Korean BBQ"><label for="sc3">Korean BBQ</label>
+                        <input type="radio" id="sc4" name="sauce" value="Cajun"><label for="sc4">Cajun</label>
+                        <input type="radio" id="sc5" name="sauce" value="Chili Paste"><label for="sc5">Chili Paste</label>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <button class="btn-cta btn-full-width" id="btn-add-variant" onclick="submitVariant()" disabled>Tambahkan ke Keranjang</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-fish">
+        <div class="modal-content">
+            <span class="close-modal" onclick="toggleModal('modal-fish', false)">&times;</span>
+            <h2 id="fish-menu-name" class="modal-menu-name">Menu</h2>
+            <p id="fish-menu-price" class="modal-menu-price"></p>
+            
+            <form id="form-fish">
+                <div class="form-group">
+                    <label>Pilihan Saus (Signature Sauce)</label>
+                    <div class="radio-group">
+                        <input type="radio" id="fsc1" name="sauce" value="Honey Mustard BBQ"><label for="fsc1">Honey Mustard BBQ</label>
+                        <input type="radio" id="fsc2" name="sauce" value="Korean BBQ"><label for="fsc2">Korean BBQ</label>
+                        <input type="radio" id="fsc3" name="sauce" value="Italian Herbs"><label for="fsc3">Italian Herbs</label>
+                        <input type="radio" id="fsc4" name="sauce" value="Cajun"><label for="fsc4">Cajun</label>
+                        <input type="radio" id="fsc5" name="sauce" value="Chili Paste"><label for="fsc5">Chili Paste</label>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <button class="btn-cta btn-full-width" id="btn-add-fish" onclick="submitFish()" disabled>Tambahkan ke Keranjang</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-bbq">
+        <div class="modal-content">
+            <span class="close-modal" onclick="toggleModal('modal-bbq', false)">&times;</span>
+            <h2 class="bbq-title">Premium Yakiniku</h2>
+            <p class="bbq-subtitle">Kustomisasi pengalaman memanggang Anda. Silakan pilih minimal 3 item.</p>
+            
+            <div id="bbq-list"></div>
+            
+            <div class="bbq-total-wrapper">
+                <h3 id="bbq-total-price" class="bbq-total-price">Total: Rp 0</h3>
+            </div>
+            <button class="btn-cta btn-full-width mt-20" id="btn-add-bbq" onclick="submitBBQ()" disabled>Pilih Min. 3 Item</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="image/Logo.png" alt="Logo" class="footer-logo">
+                <p>Menyajikan mahakarya kuliner steak premium. Dedikasi terhadap keunggulan rasa dan suasana.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigasi</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="order.html">Pesanan</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Reservasi & Lokasi</h4>
+                <p>Ayani Mega Mall, Blok. G No. 19-20 Komplek Ruko A. Yani, Jl. Jenderal Ahmad Yani, Parit Tokaya, Kec. Pontianak Sel., Kota Pontianak, Kalimantan Barat 78115</p><br>
+                <p class="footer-contact-highlight">T: +62 822 5018 0185</p>
+                <p>Senin-Minggu: 10:00 - 22:00</p>
+            </div>
+            <div class="footer-col">
+                <h4>Social Media</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/terrazzasteakhouse/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">&copy; 2026 Terrazza Steak House Pontianak. All Rights Reserved.</div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
